@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href={%static 'css/login.css'%}>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+    $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        });
+
+
+
+     $(document).ready(function(){/*登录验证失败，提交表单不跳转到其他页面，出现错误弹窗信息消息*/
+        var message={{ message|safe }};
+          if (message!=='1') {
+               alert(message);
+          }
+         })
+
+</script>
+<style>
+</style>
+<body>
+  <div class="box">
+     <h2>Login</h2>
+
+ <form  method="post" id="dl"  class="form-box"   name="dl">
+ {% csrf_token %}
+    <div class="inputBox">
+        <input type="text" name="username" value="{{username}}" id="username" autocomplete="on" required="required"
+        oninvalid="setCustomValidity('用户名不能为空');" oninput="setCustomValidity('');"  >
+        <label>Username</label>
+    </div>
+    <div class="inputBox">
+        <input type="password" name="password" value="{{password}}" id="password" autocomplete="off" required="required"
+        oninvalid="setCustomValidity('密码不能为空');" oninput="setCustomValidity('');">
+        <label>Password</label>
+    </div>
+    <div class="other">
+        <div class="other_select">
+            <div style="color: white" >记住密码<input type="checkbox"  {{ checked }} name="remember" ></div>
+            <div style="color: white" >还没有账号？点击 <a style="font-size: large" href={% url 'Login:regist' %}> 注册</a></div>
+            <div style="color: white" >忘记密码？ <a style="font-size: large" href={% url 'Login:fpassword' %}>点击此处</a></div>
+        </div>
+        <input type="submit" name="submit" id="submit"   value="登录">
+    </div>
+        </form>
+     </div>
+ </body>
+</html>

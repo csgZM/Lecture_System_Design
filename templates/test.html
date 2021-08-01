@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+	function isHidden(oDiv){
+      var vDiv = document.getElementById(oDiv);
+      vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';
+    }
+</script>
+</head>
+<body>
+<div class="user">
+                            <div onclick="isHidden('div1','div21','div22','div23','div5')" class="catalog"><b>我的信息</b></div>
+                            <div style="cursor:hand;font-size:15px;font-family: 'Adobe 楷体 Std R' " class="catalog" onclick="isHidden('div21','div1','div22','div23','div5')"><b>已预约讲座</b></div>
+                            <div style="cursor:hand;font-size:15px;font-family: 'Adobe 楷体 Std R' " class="catalog" onclick="isHidden('div22','div1','div21','div23','div5')"><b>已听讲座</b></div>
+                            <div style="cursor:hand;font-size:15px;font-family: 'Adobe 楷体 Std R' " class="catalog" onclick="isHidden('div23','div1','div21','div22','div5')"><b>已发布讲座</b></div>
+                        </div>
+                        <div class="content">
+                           <div id ="div1" style="display:none" class="content_area">
+                               <div style='margin-left: 400px;margin-top: 10px;margin-bottom: 30px'>我的信息</div>
+                                <table class="UserMessage">
+                                    <tr class="myTitle">
+                                    <th>名字</th>
+                                    <th>用户名</th>
+                                    <th>密码</th>
+                                    <th>绑定手机</th>
+                                    <th>绑定邮箱</th>
+                                    </tr>
+                                    <tr>
+                                    <tr></tr>
+                                    <td>{{ name }}</td>
+                                    <td>{{ UserMessage.Username}}</td>
+                                    <td>{{ UserMessage.PassWord}}</td>
+                                    <td>{{ UserMessage.PhoneNumber}}</td>
+                                    <td>{{ UserMessage.Email}}</td>
+                                    </tr>
+                                    </table>
+                            </div>
+                        <div id ="div21" style="display:none;" class="content_area">
+                        <div style='margin-left: 400px;margin-top: 10px;margin-bottom: 30px'>已预约讲座记录</div>
+                            {% if rlecture %}
+                                    <table class="lmessage">
+                                        <tr class="myTitle">
+                                        <th>讲座名称</th>
+                                        </tr>
+                                        {% for c in rlecture %}
+                                            <tr>
+                                             <td>{{ c.Lecture_title}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                            {% else %}
+                                <span style='margin-left: 416px;margin-top: 50px;margin-bottom: 30px'>暂无记录</span>
+                            {% endif %}
+                        </div>
+                        <div id ="div22" style="display:none;" class="content_area">
+                        <div style='margin-left: 400px;margin-top: 10px;margin-bottom: 30px'>已听讲座记录</div>
+                         {% if llecture %}
+                                    <table class="lmessage">
+                                        <tr class="myTitle">
+                                        <th>讲座名称</th>
+                                        </tr>
+                                        {% for c in llecture %}
+                                            <tr>
+                                                <td>{{ c.Lecture_title}}</td><td><a href={%url 'User:lecture_experience'%}?l_id={{ c.id }}>填写讲座心得</a></td><td>讲座心得提交状态：{{ c.status }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                         {% else %}
+                             <span style='margin-left: 416px;margin-top: 50px;margin-bottom: 30px'>暂无记录</span>
+                         {% endif %}
+                        </div>
+                        <div id ="div23" style="display:none;">
+                        <div style='margin-left: 400px;margin-top: 10px;margin-bottom: 30px'>已发布讲座记录</div>
+                            {% if plecture %}
+                                    <table class="lmessage">
+                                        <tr class="myTitle">
+                                        <th>讲座名称</th>
+                                        </tr>
+                                        {% for c in plecture %}
+                                            <tr>
+                                             <td>{{ c.Lecture_title}}</td><td id="l_id" style="display:none;">{{ c.id}}</td><td><input class="publish" type='button' id='{{ c.id }}' value="发布签到" onclick='c(this)'/>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                            {% else %}
+                                <span style='margin-left: 416px;margin-top: 50px;margin-bottom: 30px'>暂无记录</span>
+                            {% endif %}
+                        </div>
+                            <div id ="div5" style="display:none;" class="content_area">
+                                <div style='margin-left: 460px;margin-top: 10px;margin-bottom: 10px'>修改昵称</div>
+                                    <input type="text" id="rname" style='margin-left: 416px;margin-top: 20px;margin-bottom: 10px'  placeholder="请输入修改的名字">
+                                    <button id="crname" style='margin-left: 20px;margin-top: 20px;margin-bottom: 30px'>提交 </button>
+                            </div>
+                        </div>
+
+</body>
+</html>

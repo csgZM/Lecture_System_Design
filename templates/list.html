@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/js/dropdown.js"></script>
+<style>
+    nav {
+    background:#fcfcfc;
+    border-bottom:1px solid #e7e7e7;
+    border-top:1px solid #e7e7e7;
+    display:block;
+    margin-bottom:34px;
+    overflow:hidden;
+    padding:13px 0 14px;
+    position:relative;
+    z-index:99;
+}
+</style>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					 <a href={%url 'lecture_system:index'%}>首页</a>
+				</li>
+				<li>
+					<a href={% url 'User:index' %}>个人中心</a>
+				</li>
+				<li>
+					<a href={%url 'lecture_system:publish'%}>发布讲座</a>
+				</li>
+                <li class="dropdown pull-right">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">其它操作<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li >
+                         <a href={%url 'User:loginout'%}>注销</a>
+                    </li>
+                    <li >
+                         <a href={%url 'User:rpassword'%}>修改密码</a>
+                    </li>
+                </ul>
+            </li>
+			</ul>
+			<div class="page-header">
+				<h1>
+					 <small style="margin-left: 36%">讲座类别：{{ category }}</small>
+				</h1>
+			</div>
+            <div class="row clearfix">
+				<div class="col-md-12 column" style="margin-left: 30%">
+					<ul>
+						{% for c in contacts.object_list%}
+                            <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                        {% endfor %}
+					</ul>
+				</div>
+			</div>
+			<ul class="pagination pagination-sm" style="margin-left: 38%;margin-top: 200px">
+               <li>
+                {% if  contacts.has_previous %}
+					   <a href={%url 'lecture_system:list' category_value %}?page={{ contacts.previous_page_number }}>上一页</a>
+                {% endif %}
+                </li>
+				<li>
+					 {% for p in  list_page %}
+                        <a href={%url 'lecture_system:list'  category_value %}?page={{ p }}>{{p}}</a>
+                     {% endfor %}
+				</li>
+                <li>
+                    {% if  contacts.has_next %}
+                        <a href={%url 'lecture_system:list' category_value %}?page={{ contacts.next_page_number }}>下一页</a>
+                    {% endif %}
+                </li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+关键字:{{ query }}
+  {% if page.object_list %}
+    {% for item in page.object_list %}
+        <p><a href={%url 'lecture_system:Ldetail' item.object.Lecture_category item.object.id %}>讲座主题：{{ item.object.Lecture_title}} 主讲人：{{ item.object.Lecture_Pname}}</a></p>
+    {% endfor %}
+  {% else %}
+      无相关结果
+  {% endif %}
+
+
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布讲座</title>
+     <link rel="stylesheet" href={%static 'css/userdetails.css'%}>
+     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/js/dropdown.js"></script>
+<script>
+     $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        });
+     $(document).ready(function(){
+      $("#getpublish_power").click(function(){/*发布权限申请（异步）*/
+       if ($("#getreason").val()==''){
+          alert("申请理由不能为空");
+           return false;
+         }
+         if(confirm("确定申请？")){
+             var date=new Date();
+             var year=date.getFullYear(); //获取当前年份
+             var month=date.getMonth()+1; //获取当前月份
+             var dat=date.getDate(); //获取当前日
+             var hour=date.getHours(); //获取小时
+             var minutes=date.getMinutes(); //获取分钟
+             var time=year+'年'+month+'月'+dat+'日'+hour+':'+minutes;
+
+             data={
+                 'time':time,
+                 'reason':$("#getreason").val()
+             };
+             $.ajax({
+                 url:"{%url 'User:getpublish'%}",
+                 type: "POST",
+                 dataType: "json",
+                 data:data,
+                 success:function(data){
+                     console.log(data["result"]);
+                     alert(data['result']);
+                     window.location.reload()
+                },
+             });
+         }else{
+             return false;
+         }
+  });
+      $("#submit").click(function(){/*发布讲座（异步）*/
+             var obj=document.getElementById("category");
+             var index=obj.selectedIndex;
+             var value=obj.options[index].value;
+             var data={
+                         'title': $("#title").val(),
+                        'Pname':$("#Pname").val(),
+                        'introdution':$("#introdution").val(),
+                        'SN':$("#SN").val(),
+                        'category':value,
+                         'data':$("#data").val(),
+                         'Stime':$("#Stime").val(),
+                         'Etime':$("#Etime").val(),
+                         'Location' :$("#Location").val(),
+                     };
+              console.log(data)
+              if( data['tilte']==''){
+                  alert("讲座标题不能为空");
+                  return false
+              }
+              if( data['Pname']==''){
+                  alert("主讲人不能为空");
+                  return false;
+              }
+              if( data['data']==''){
+                  alert("讲座日期不能为空");
+                  return false;
+              }
+
+              if( data['Stime']==''){
+                  alert("讲座开始时间不能为空");
+                  return false;
+              }
+              if( data['Etime']==''){
+                  alert("讲座结束时间不能为空");
+                  return false;
+              }
+               if( data['Location']==''){
+                  alert("讲座地点不能为空");
+                  return false;
+              }
+              if( data['introdution']==''){
+                  alert("讲座介绍不能为空");
+                  return false;
+              }
+              if( data['SN']==''){
+                  alert("最大预约人数不能为空");
+                  return false;
+              }
+              if( data['category']=="none"){
+                  alert("讲座分类不能为空");
+                  return false;
+              }
+
+
+
+              if(confirm("确定发布？")){
+                 $.ajax({
+                     url:"{% url 'lecture_system:publish'%}",
+                     type: "POST",
+                     dataType: "json",
+                     data:data,
+                     success:function(data){
+                         console.log(data["result"]);
+                         alert(data['result']);
+                         window.location.reload()
+                    },
+                 });
+                 }else {
+                     return false
+                 }
+             });
+     })
+</script>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="active">
+                     <a href={%url 'lecture_system:index'%}>/首页</a>
+                </li>
+                <li>
+                    <a href={%url 'User:index'%}>的个人中心</a>
+                </li>
+                <li >
+                    <a href={%url 'lecture_system:publish'%}>发布讲座</a>
+                </li>
+				<li class="dropdown pull-right">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">其它操作<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li >
+					         <a href={%url 'User:loginout'%}>注销</a>
+                        </li>
+                        <li >
+                             <a href={%url 'User:rpassword'%}>修改密码</a>
+                        </li>
+					</ul>
+				</li>
+			</ul>
+        <div id ="div3"  class="content_area" style="margin-top: 50px">
+        {% if publish_power %}
+               <form onsubmit="return false" id="lecture_Message" method="post"  action="##" class="basic-grey">
+                    {% csrf_token %}
+                   <h1>
+                        讲座发布
+                    </h1>
+                    <label>
+                        <span>讲座分类 :</span>
+                        <select name="category" id="category" >
+                            <option value="none">--请选择标签--</option>
+                            <option value="kj">科技</option>
+                            <option value="fl">法律</option>
+                            <option value="wx">文学</option>
+                            <option value="sz">素质教育</option>
+                            <option value="lz">励志</option>
+                            <option value="jk">身心健康</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>讲座标题 :</span>
+                        <input   type="text" name="title" id="title"   placeholder="填写讲座标题" />
+                    </label>
+                    <label>
+                        <span>主讲人姓名 :</span>
+                        <input  type="text" name="Pname" id="Pname"  placeholder="填写主讲人"/>
+                    </label>
+
+                    <label>
+                        <span>讲座简介 :</span>
+                        <textarea maxlength="300" name="introdution"  id="introdution" placeholder="不超过300个字"></textarea>
+                    </label>
+                    <label>
+                        <span>讲座地点:</span>
+                        <input  type="text" name="Location" id="Location"  placeholder="填写讲座地点"/>
+                    </label>
+                    <label>
+                        <span>日期:</span>
+                        <input   type="date" name="data" id="data"   />
+                    </label>
+                    <label>
+                        <span>开始时间:</span>
+                        <input  type="time" name="Stime" id="Stime"  />
+                    </label>
+                    <label>
+                        <span>结束时间:</span>
+                        <input  type="time" name="Etime" id="Etime"  />
+                    </label>
+                    <label>
+                        <span>讲座最大预约人数</span>
+                        <input   type="number" name="SN" id="SN"/>
+                    </label>
+                    <label style="margin-left: 80%">
+                        <button type="submit" class="submit" id="submit">发布</button>
+                    </label>
+                </form>
+        {% else %}
+            <div style='margin-left: 450px;margin-top: 50px;margin-bottom: 100px'>暂无发布权限</div>
+                <span style='margin-left: 300px;margin-top: 80px;margin-bottom: 10px'>申请理由:</span><input  style="width: 350px; " type="text" id="getreason">
+                <button id="getpublish_power" style='margin-left: 20px;margin-top: 50px;margin-bottom: 10px'>点击申请权限</button>
+        {% endif %}
+        </div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

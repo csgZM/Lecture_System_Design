@@ -1,0 +1,209 @@
+
+<html>
+{% load static %}
+<head>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>新用户注册</title>
+    <link rel="stylesheet"  href="{%static 'css/regist.css'%}">
+
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+     $.ajaxSetup({
+            data:{csrfmiddlewaretoken:'{{ csrf_token }}'}
+        });
+    //检查所有填写是否符号规范
+    function checkall() {
+            if (document.getElementById('YHMerror').textContent==""
+                &&document.getElementById('MMerror').textContent==""
+                &&document.getElementById('QRMMerror').textContent==""
+                &&document.getElementById('LXDHerror').textContent==""
+                &&document.getElementById('DZYXerror').textContent==""){
+                return true;
+            }else{
+                alert("信息填写错误，请按提示进行修改")
+                return false;
+            }
+    };
+
+$(document).ready(function() {
+      var message={{ message|safe }}; /*该段代码用来提醒用户其用户名所对应的老师的职工号不存在或不正确且不跳转到其他页面（管理员的账号用户名只能用教师职工号来注册）*/
+          if (message!=='1') {
+               alert(message);
+          }
+    //    用户名
+    $("#username").blur(function () {
+        var username = $("#username").val();
+        // var reN =/^\d{6,18}$/;
+        var re = /^[a-zA-Z_]{6,18}$/;
+
+        if (username.length < 6 || username.length > 18) {
+            $("#YHMerror").html("格式错误,长度应为6-18个字符");
+
+        } else if (!re.test(username)) {
+            $("#YHMerror").html("格式错误,只能包含英文字母和下划线");
+
+        } else {
+                 $.ajax({
+                 url:"{% url 'Login:checkusername'%}",
+                 type: "POST",
+                 dataType: "json",
+                 data:{
+                     'username':username
+                 },
+                 success:function(data){
+                     if(data['message']){
+                          $("#YHMerror").html(data['message']);
+                     }else{
+                          $("#YHMerror").html("");
+                     }
+                },
+             });
+        }
+    });
+
+    $("#username").focus(function () {
+            $("#YHMerror").html("");
+        }
+    );
+
+    //   密码
+    $("#password").blur(function () {
+        var password = $("#password").val();
+
+        var re=/(?=.*[a-z])(?=.*\d)(?=.*[#@!~%^&*])[a-z\d#@!~%^&*]{8,16}/i;
+
+        if (password.length <8) {
+            $("#MMerror").html("格式错误,,密码长度至少为8位");
+        } else if (!re.test(password)) {
+            $("#MMerror").html("密码必须包含大小字母、数字、特称字符（~ ! @ # $ % ^ & *）");
+        } else {
+            $.ajax({
+                 url:"{% url 'Login:checkpassword'%}",
+                 type: "POST",
+                 dataType: "json",
+                 data:{
+                     'password':password
+                 },
+                 success:function(data){
+                     if(data['message']){
+                          $("#MMerror").html(data['message']);
+                     }else{
+                          $("#MMerror").html("");
+                     }
+                },
+             });
+        }
+    });
+
+    $("#password").focus(function () {
+        $("#MMerror").html("");
+    });
+
+    //    确认密码
+    $("#confirmPassword").blur(function () {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmPassword").val();
+        if (password != confirmPassword) {
+            $("#QRMMerror").html("两次密码输入不一致");
+        } else {
+            $("#QRMMerror").html("");
+        }
+    });
+
+    $("#confirmPassword").focus(function () {
+        $("#QRMMerror").html("");
+    });
+
+    //    联系电话
+    $("#phone").blur(function () {
+        var phone = $("#phone").val();
+        var re = /^([, ; ,;]*1\d{10}[, ; .;]*)*$/;
+        if (!re.test(phone)) {
+            $("#LXDHerror").html("请输入正确的号码");
+        } else {
+            $.ajax({
+                 url:"{% url 'Login:checkphone'%}",
+                 type: "POST",
+                 dataType: "json",
+                 data:{
+                     'phonenumber':phone
+                 },
+                 success:function(data){
+                     if(data['message']){
+                          $("#LXDHerror").html(data['message']);
+                     }else{
+                          $("#LXDHerror").html("");
+                     }
+                },
+             });
+        }
+    });
+
+    $("#phone").focus(function () {
+        $("#LXDHerror").html("");
+    });
+
+    //    电子邮箱
+    $("#email").blur(function () {
+        var email = $("#email").val();
+        var re = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/
+         if (email==""){
+            return false
+        }
+        if (!re.test(email)) {
+             $("#DZYXerror").html("邮箱格式错误");
+        } else {
+            $.ajax({
+                 url:"{% url 'Login:checkemail'%}",
+                 type: "POST",
+                 dataType: "json",
+                 data:{
+                     'email':email
+                 },
+                 success:function(data){
+                     if(data['message']){
+                          $("#DZYXerror").html(data['message']);
+                     }else{
+                          $("#DZYXerror").html("");
+                     }
+                },
+             });
+        }
+    });
+    $("#email").focus(function () {
+        $("#DZYXerror").html("");
+    });
+})
+
+
+
+</script>
+<style>
+</style>
+<body>
+<form   method="post"  onsubmit="return checkall()" class="regist">
+ {% csrf_token %}
+    <div><label>用户名</label> <input type="text" id="username" name="username" class="inputText" required placeholder="请输入您的用户名"
+                                    oninvalid="setCustomValidity('用户名不能为空！');" oninput="setCustomValidity('');"  /><span id="YHMerror"> </span></div>
+    <div><label>密码</label> <input type="password" autocomplete="new-password" id="password" name="password" class="inputText"required placeholder="请输入您的密码"
+                                   oninvalid="setCustomValidity('密码不能为空！');" oninput="setCustomValidity('');" /> <span id="MMerror" > </span></div>
+    <div><label>确认密码</label> <input type="password" id="confirmPassword" autocomplete="new-password" class="inputText" required placeholder="请确认您的密码"
+                                    oninvalid="setCustomValidity('请确认密码！');" oninput="setCustomValidity('');"/> <span id="QRMMerror"> </span></div>
+    <div><label>联系电话</label> <input type="text" id="phone" name="phonenumber" class="inputText" required placeholder="请输入您的联系电话"
+                                     oninvalid="setCustomValidity('手机号码不能为空！');" oninput="setCustomValidity('');" /><span id="LXDHerror"> </span></div>
+    <div><label>电子邮箱</label> <input type="email" id="email" name="email" class="inputText"  required placeholder="请输入您的电子邮箱"
+                                     oninvalid="setCustomValidity('邮箱不能为空');" oninput="setCustomValidity('');"/> <span id="DZYXerror"> </span></div>
+    <div class="identity">
+   <label><input type="radio" id="teacher" value="is_superuser" name="identity"  required  oninvalid="setCustomValidity('请选择身份');" oninput="setCustomValidity('');">管理员</label>
+   <label><input type="radio" id='student' value="is_student" name="identity" required>学生</label>
+    </div>
+    <div>
+    <button type="submit" class="submit" >提交</button>
+    <button type="reset" class="submit">重置</button>
+    <button type="button" class="submit" ><a href={% url "Login:login" %}>返回</a></button>
+    </div>
+</form>
+</body>
+</html>

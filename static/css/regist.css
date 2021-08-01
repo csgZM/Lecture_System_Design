@@ -1,0 +1,56 @@
+
+
+    div {
+        padding: 5px 0;
+    }
+
+
+    label {
+        font-family: "Adobe 楷体 Std R";
+        color: lavenderblush;
+        display: inline-block;
+        width: 100px;
+        margin-right: 40px;
+        text-align: right;
+    }
+
+    span {
+        color: #FF0000;
+        font-size: 12px
+    }
+
+    .inputText {
+        display: inline-block;
+        width: 260px;
+        margin-right: 20px;
+    }
+
+    .submit {
+        float-displace: line;
+        margin-right: 20px;
+        margin-left: 80px;
+        margin-top: 20px;
+    }
+    button{
+        font-family: "Adobe 楷体 Std R";
+    }
+    body{
+    margin: 0;
+    padding: 0;
+    background: url(../images/bg01.jpeg);
+    font-family: sans-serif;
+    background-size: cover;
+}
+
+    .regist{
+        height: 280px;
+        margin: 10% auto;
+        width: 600px;
+        border-style: solid;
+        color: yellow;
+    }
+    .identity{
+        border-style: none;
+        margin-top: 20px;
+        margin-left: 20%;
+    }

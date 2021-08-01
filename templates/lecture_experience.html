@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<!-- saved from url=(0014)about:internet -->
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href={% static 'css/notepad/bootstrap-clearmin.min.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/notepad/roboto.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/notepad/font-awesome.min.css' %}>
+    /*字体格式*/
+    <link rel="stylesheet" type="text/css" href={% static 'css/notepad/summernote.css' %}>
+    <title>Clearmin template</title>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}'}
+    });
+
+    function show(self) {
+        var title = '{{ title|safe }}';
+        var content = '{{content|safe  }}';
+        var message = '{{ result|safe }}';
+        console.log(message);
+        if (message == '0') {
+            alert('还未填写讲座心得')
+        } else {
+            $('#summernote').code(content);
+            $("#title").val(title)
+        }
+    }
+
+    function c(self) {/*利用self来获取自己的id值*/
+        /*summernote编辑器的使用得到编辑值：$('#summernote').code()，编辑文本填入： $('#summernote').code("ｓａｄ<span style=\"font-weight: bold;\">ｓａｄｓａｄ</span>");*/
+        if (confirm("确定提交？")) {
+            if ($("#title").val() == '' || $('#summernote').code() == '') {
+                alert("心得标题或者内容不能为空")
+            } else {
+                data = {
+                    'l_id': self.id,
+                    'title': $("#title").val(),
+                    'content': $('#summernote').code(),
+                };
+                $.ajax({
+                    url: "{%url 'User:l_experience'%}",
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function (data) {
+                        console.log(data["message"]);
+                        alert(data["message"]);
+                    },
+                });
+            }
+
+        } else {
+            return false;
+        }
+    }
+</script>
+<body class="cm-no-transition cm-1-navbar">
+<div id="cm-menu">
+    <nav class="cm-navbar cm-navbar-primary">
+        <div class="cm-flex"><a href="#" class="cm-logo"></a></div>
+        <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+    </nav>
+    <div id="cm-menu-content">
+        <div id="cm-menu-items-wrapper">
+            <div id="cm-menu-scroller">
+                <ul class="cm-menu-items">
+                    <li class="active"><a href={% url 'User:index' %} class="sf-notepad">个人中心</a></li>
+                    <li><a href={% url 'lecture_system:index' %} class="sf-lock-open">首页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<header id="cm-header">
+    <nav class="cm-navbar cm-navbar-primary">
+    </nav>
+</header>
+<div id="global">
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">讲座心得</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title">
+                </div>
+                <label>Content</label>
+                <div id="summernote"></div>
+                <div class="form-group text-right" style="margin-top:20px">
+                    <input class="btn btn-primary" type='button' id='{{ l_id }}' value="提交" onclick='c(this)'/>
+                    <input class="btn btn-default" type='button' id='{{ l_id }}' value="显示" onclick='show(this)'/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src={% static 'js/notepad/jquery.mousewheel.min.js' %}></script>
+<script src={% static 'js/notepad/jquery.cookie.min.js' %}></script>
+<script src={% static 'js/notepad/fastclick.min.js' %}></script>
+<script src={% static 'js/notepad/bootstrap.min.js' %}></script>
+<script src={% static 'js/notepad/clearmin.min.js' %}></script>
+<script src={% static 'js/notepad/summernote.min.js' %}></script>
+<script src={% static 'js/notepad/demo/notepad.js' %}></script>
+</body>
+</html>

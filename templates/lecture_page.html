@@ -1,0 +1,211 @@
+{% load static %}
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>讲座管理系统</title>
+    <meta charset="utf-8">
+
+    <!-- Link styles -->
+    <link rel="stylesheet" href="{%static 'css/index-css/reset.css'%}"  type="text/css" media="screen">
+    <link rel="stylesheet" href="{%static 'css/index-css/style.css'%}"  type="text/css" media="screen">
+    <link rel="stylesheet" href="{%static 'css/index-css/nivo-slider.css'%}" type="text/css" media="screen">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link scripts -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.1/js/dropdown.js"></script>
+    <script src="{%static 'js/index/jquery.js'%}" type="text/javascript"></script>
+    <script src="{%static 'js/index/jquery.nivo.slider.pack.js'%}" type="text/javascript"></script>
+    <script>
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+                effect:'random',
+                slices:15,
+                boxCols:8,
+                boxRows:8,
+                animSpeed:500,
+                pauseTime:4000,
+                directionNav:false,
+                directionNavHide:false,
+                controlNav:true,
+                captionOpacity:0.9
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="{%static 'js/index/html5.js'%}"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <header><!-- Define the header section of the page -->
+        <ul class="nav nav-tabs">
+                    <li class="active">
+                         <a href={%url 'lecture_system:index'%}>/首页</a>
+                    </li>
+                    <li>
+                        <a href={%url 'User:index'%}>的个人中心</a>
+                    </li>
+                    <li >
+                        <a href={%url 'lecture_system:publish'%}>发布讲座</a>
+                    </li>
+                    <li class="dropdown pull-right">
+                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">其它操作<strong class="caret"></strong></a>
+                        <ul class="dropdown-menu">
+                            <li >
+                                 <a href={%url 'User:loginout'%}>注销</a>
+                            </li>
+                            <li >
+                                 <a href={%url 'User:rpassword'%}>修改密码</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        <div class="logo" style="margin-top: 20px"><!-- Define the logo element -->
+            <a href="#">
+                <span style="font-size: 15px">昵称：{{ name }}</span>
+            </a>
+        </div>
+
+        <section id="search" style="margin-top: 15px"><!-- Search form -->
+            <form action="/search"  method="get">
+                <input type="text"  name="q" placeholder="输入关键字搜索讲座">
+                <button type="submit" style="height:25px ">搜索</button>
+            </form>
+        </section>
+
+    </header>
+    <section id="slider-wrapper"><!-- Nivo promo slider -->
+        <div id="slider" class="nivoSlider">
+            <img style="display: none;" src="{%static 'images/index-images/promo1.jpg'%}" alt="" title="#htmlcaption-1">
+            <img style="display: none;" src="{%static 'images/index-images/promo2.jpg'%}" alt="" title="#htmlcaption-2">
+            <img style="display: none;" src="{%static 'images/index-images/promo3.jpg'%}" alt="" title="#htmlcaption-3">
+        </div>
+        <div id="htmlcaption-1" class="nivo-html-caption">
+            <h5 class="p2">Your promo text 1</h5>
+            <p>Promo text description here</p>
+        </div>
+        <div id="htmlcaption-1" class="nivo-html-caption">
+            <h5 class="p2">Your promo text 1</h5>
+            <p>Promo text description here</p>
+        </div>
+        <div id="htmlcaption-2" class="nivo-html-caption">
+            <h5 class="p2">Your promo text 2</h5>
+            <p>Promo text description here</p>
+        </div>
+        <div id="htmlcaption-3" class="nivo-html-caption">
+            <h5 class="p2">Your promo text 3</h5>
+            <p>Promo text description here</p>
+        </div>
+    </section>
+
+    <div id="main"><!-- Define the main content section -->
+
+        <section id="promo"><!-- Define the promo section -->
+             <h2 style="text-align: center">欢迎进入讲座管理系统首页!</h2>
+        </section>
+
+        <section id="content"><!-- Define the featured content section -->
+            <ul>
+                <li>
+                    <h1>科技</h1>
+                     {% for c in list_kj %}
+                         <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                     {% endfor %}
+                    <a class="more" href={%url 'lecture_system:list' 'kj'%}?page=1>了解更多...</a>
+                </li>
+                <li>
+                    <h1>文学</h1>
+                      {% for c in list_wx%}
+                          <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                       {% endfor %}
+                    <a class="more" href={%url 'lecture_system:list' 'wx'%}?page=1>了解更多...</a>
+                </li>
+                <li>
+                    <h1>法律</h1>
+                        {% for c in list_fl%}
+                            <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                         {% endfor %}
+                    <a class="more" href={%url 'lecture_system:list' 'fl' %}?page=1>了解更多...</a>
+                </li>
+                <li>
+                    <h1>励志</h1>
+                        {% for c in list_lz%}
+                             <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                        {% endfor %}
+                    <a class="more" href={%url 'lecture_system:list' 'lz' %}?page=1>了解更多...</a>
+                </li>
+                <li>
+                    <h1>素质教育</h1>
+                        {% for c in list_sz%}
+                             <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                        {% endfor %}
+                    <a class="more" href= {%url 'lecture_system:list' 'sz'%}?page=1>了解更多...</a>
+                </li>
+                <li>
+                    <h1>身心健康</h1>
+                        {% for c in list_jk%}
+                             <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+                        {% endfor %}
+                    <a class="more" href= {%url 'lecture_system:list' 'jk' %}?page=1>了解更多...</a>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <div id="submain"><!-- Define submain content section -->
+        <section id="subcontent"><!-- Define the content section #2 -->
+            <div id="left">
+                <ul>
+                    {% for c in list_kj%}
+                    <li>
+                        <h3>{{c.Lecture_title}}</h3>
+                        <a href="#"><img alt="" src="{%static 'images/index-images/post.png'%}" /></a>
+                        <p>{{c.Lecture_introdution}}</p>
+                        <a class="more" href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>了解更多...</a>
+                    </li>
+                     {% endfor %}
+                </ul>
+            </div>
+            <div id="right">
+
+                <div class="block"><!-- Archives block -->
+                    <h3>热门主讲人</h3>
+                    <ul class="archives">
+                      {% for c in list_kj%}
+                          <li><a  id="{{c.Lecture_Pname}}" href={%url 'lecture_system:list_name' c.Lecture_Pname%}>{{c.Lecture_Pname}}</a></li>
+                      {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="block"><!-- Recent posts block -->
+                    <h3>最新讲座</h3>
+                    <ul class="recent">
+                        {% for c in list_kj%}
+                        <li>
+                            <time datetime="2014-02-08T20:20">{{ c.Lecture_Stime }}</time>
+                            <p>{{ c.Lecture_title }}</p>
+                            <a class="more" href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>了解更多...</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer><!-- Define the footer section of the page -->
+        <ul id="social"><!-- Social network links -->
+            <li><a href="#" title="facebook"><img alt="" src="{%static 'images/index-images/facebook.png'%}" /></a></li>
+            <li><a href="#" title="twitter"><img alt="" src="{%static 'images/index-images/twitter.png'%}" /></a></li>
+            <li><a href="#" title="linkedin"><img alt="" src="{%static 'images/index-images/linkedin.png'%}" /></a></li>
+            <li><a href="#" title="rss"><img alt="" src="{%static 'images/index-images/rss.png'%}" /></a></li>
+        </ul>
+    </footer>
+
+</div>
+</body>
+</html>

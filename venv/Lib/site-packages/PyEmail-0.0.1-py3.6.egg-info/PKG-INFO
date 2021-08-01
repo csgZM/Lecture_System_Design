@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: PyEmail
+Version: 0.0.1
+Summary: Python library to send emails using SMTPLIB library
+Home-page: http://www.yashsinha.com/PyEmail
+Author: Yash Sinha
+Author-email: mail.yash.sinha@gmail.com
+License: GNU GENERAL PUBLIC LICENSE Version 3
+Description: UNKNOWN
+Platform: UNKNOWN

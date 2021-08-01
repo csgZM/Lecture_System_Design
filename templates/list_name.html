@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主讲人</title>
+</head>
+<body>
+    {% for c in list%}
+        <p><a href={%url 'lecture_system:Ldetail' c.Lecture_category c.id %}>讲座主题：{{ c.Lecture_title}} 主讲人：{{ c.Lecture_Pname}}</a></p>
+    {% endfor %}
+</body>
+</html>

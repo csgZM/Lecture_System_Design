@@ -1,0 +1,17 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+admin_view_permission/__init__.py
+admin_view_permission/admin.py
+admin_view_permission/apps.py
+admin_view_permission/enums.py
+admin_view_permission/utils.py
+admin_view_permission/management/__init__.py
+admin_view_permission/management/commands/__init__.py
+admin_view_permission/management/commands/fix_proxy_permissions.py
+django_admin_view_permission.egg-info/PKG-INFO
+django_admin_view_permission.egg-info/SOURCES.txt
+django_admin_view_permission.egg-info/dependency_links.txt
+django_admin_view_permission.egg-info/requires.txt
+django_admin_view_permission.egg-info/top_level.txt

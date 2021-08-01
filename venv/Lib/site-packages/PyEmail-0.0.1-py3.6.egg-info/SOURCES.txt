@@ -1,0 +1,6 @@
+pyemail.py
+setup.py
+PyEmail.egg-info/PKG-INFO
+PyEmail.egg-info/SOURCES.txt
+PyEmail.egg-info/dependency_links.txt
+PyEmail.egg-info/top_level.txt

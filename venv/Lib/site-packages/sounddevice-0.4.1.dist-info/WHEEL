@@ -1,0 +1,19 @@
+Wheel-Version: 1.0
+Generator: bdist_wheel (0.34.2)
+Root-Is-Purelib: true
+Tag: py3-none-win_amd64
+Tag: cp32-none-win_amd64
+Tag: cp33-none-win_amd64
+Tag: cp34-none-win_amd64
+Tag: cp35-none-win_amd64
+Tag: cp36-none-win_amd64
+Tag: cp37-none-win_amd64
+Tag: cp38-none-win_amd64
+Tag: cp39-none-win_amd64
+Tag: pp32-none-win_amd64
+Tag: pp33-none-win_amd64
+Tag: pp34-none-win_amd64
+Tag: pp35-none-win_amd64
+Tag: pp36-none-win_amd64
+Tag: pp37-none-win_amd64
+

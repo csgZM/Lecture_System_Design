@@ -1,0 +1,4 @@
+# 指定根据表中的那些字段建立索引数据
+{{ object.Lecture_title }} # 根据讲座主题的建立索引
+{{ object.Lecture_introdution }} # 根据讲座简介建立索引
+{{ object.Lecture_Pname }} # 根据主讲人建立索引·

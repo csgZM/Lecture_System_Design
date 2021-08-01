@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签到页面</title>
+</head>
+<body>
+    <form  id="sign" name="sign" method="post">
+         {% csrf_token %}
+        <input name="signPassword" id="signPassword" placeholder="请输入签到码">
+        <button>提交</button>
+     </form>
+</body>
+</html>
