@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="491ee61f-9f5e-4305-b222-410ad6b59fd8" name="Default Changelist" comment="" />
+    <list default="true" id="491ee61f-9f5e-4305-b222-410ad6b59fd8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +35,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lecture_system/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
+            <state relative-caret-position="120">
               <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
@@ -42,11 +44,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
+            <state relative-caret-position="780">
               <caret line="52" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="60">
+                <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -54,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
+            <state relative-caret-position="180">
               <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
               <folding>
                 <element signature="e#84#93#0" expanded="true" />
@@ -87,11 +101,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/admin.html" />
         <option value="$PROJECT_DIR$/static/css/admin.css" />
         <option value="$PROJECT_DIR$/static/css/login.css" />
         <option value="$PROJECT_DIR$/static/css/lecture_page.css" />
@@ -142,13 +160,15 @@
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/django/db/backends/mysql/operations.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/lecture_system/views.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-10" />
-    <option name="width" value="1750" />
-    <option name="height" value="915" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="266" />
+    <option name="y" value="80" />
+    <option name="width" value="1654" />
+    <option name="height" value="864" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -257,10 +277,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.test.html" />
-        <item itemvalue="JavaScript Debug.lecture_details.html" />
         <item itemvalue="JavaScript Debug.lecture_page.html" />
-        <item itemvalue="JavaScript Debug.admin.html" />
+        <item itemvalue="JavaScript Debug.lecture_details.html" />
         <item itemvalue="JavaScript Debug.fpassword_success.html" />
+        <item itemvalue="JavaScript Debug.admin.html" />
       </list>
     </recent_temporary>
   </component>
@@ -360,11 +380,18 @@
       <workItem from="1627223549054" duration="960000" />
       <workItem from="1627742999576" duration="7000" />
       <workItem from="1627784924542" duration="211000" />
+      <workItem from="1634869293110" duration="482000" />
+      <workItem from="1634869784602" duration="108000" />
+      <workItem from="1634869931330" duration="367000" />
+      <workItem from="1634870345279" duration="2157000" />
+      <workItem from="1634872524475" duration="967000" />
+      <workItem from="1634873508659" duration="853000" />
+      <workItem from="1634874379131" duration="497000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="847458000" />
+    <option name="totallyTimeSpent" value="852889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -376,11 +403,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.50117093" side_tool="true" weight="0.26825634" />
       <window_info id="Favorites" order="1" sideWeight="0.50329673" side_tool="true" weight="0.2195301" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4967033" visible="true" weight="0.2955764" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4967033" visible="true" weight="0.32628062" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32868218" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.39745402" />
@@ -388,10 +416,10 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32152975" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32852387" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50268096" side_tool="true" weight="0.46600565" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49731904" visible="true" weight="0.31728044" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5033408" side_tool="true" weight="0.3263041" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49665925" visible="true" weight="0.33296338" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.32673267" />
       <window_info anchor="bottom" id="manage.py@Django" order="12" weight="0.32766616" />
       <window_info anchor="bottom" id="Run" order="13" sideWeight="0.49731904" weight="0.46600565" />
@@ -410,25 +438,12 @@
     <SUITE FILE_PATH="coverage/Django$sad.coverage" NAME="sad Coverage Results" MODIFIED="1618037477826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/baby_cry_detection-master" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/css/notepad/bootstrap-clearmin.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret column="21314" selection-start-column="21314" selection-end-column="21314" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/index/html5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-161" />
       </provider>
     </entry>
-    <entry file="file://D:/python3.6.4/Lib/site-packages/rest_framework/static/rest_framework/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="4" column="65084" selection-start-line="4" selection-start-column="65084" selection-end-line="4" selection-end-column="65084" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/python3.6.4/Lib/site-packages/rest_framework/static/rest_framework/css/bootstrap.min.css" />
     <entry file="file://$PROJECT_DIR$/templates/publish.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -464,27 +479,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/backends/smtp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/message.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="290" selection-start-line="290" selection-end-line="290" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/backends/smtp.py" />
+    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/message.py" />
+    <entry file="file://D:/python3.6.4/Lib/site-packages/django/core/mail/__init__.py" />
     <entry file="file://$PROJECT_DIR$/celery_tasks/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -660,23 +657,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/urls/conf.py" />
-    <entry file="file://D:/python3.6.4/Lib/importlib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/python3.6.4/Lib/importlib/__init__.py" />
     <entry file="file://$PROJECT_DIR$/lecture_system/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://D:/python3.6.4/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="863" selection-start-line="863" selection-end-line="863" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/python3.6.4/Lib/threading.py" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/base.py" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/utils/autoreload.py" />
     <entry file="file://$PROJECT_DIR$/Login/apps.py">
@@ -740,7 +725,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lecture_system/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
+        <state relative-caret-position="120">
           <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
@@ -748,9 +733,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
+        <state relative-caret-position="180">
           <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
           <folding>
             <element signature="e#84#93#0" expanded="true" />
@@ -758,10 +750,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="19" selection-start-line="19" selection-end-line="21" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
